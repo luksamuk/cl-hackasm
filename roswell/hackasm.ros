@@ -26,7 +26,7 @@ exec ros -Q -- $0 "$@"
 		       "This project is distributed under the MIT License.~%~%"
 		       "Usage: hackasm /path/to/file.asm~%~%"
 		       "This is an assembler for the Hack platform, written in "
-		       "Common Lisp. It will produce a .hack file for the "
+		       "Common Lisp.~%It will produce a .hack file for the "
 		       "assembly code given from command line.~%")))
 
 (defun main (&rest argv)
