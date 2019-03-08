@@ -1,0 +1,39 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+
+;;;; hackasm.ros
+;;;; Part of cl-hackasm.
+;;;; Copyright (c) 2019 Lucas Vieira
+;;;; This project is distributed under the MIT License.
+
+(progn (ros:ensure-asdf)
+       (unless (find-package :cl-hackasm)
+	 (ql:quickload :cl-hackasm :silent t)))
+
+(defpackage :ros.script.hackasm
+  (:use :cl))
+
+(in-package :ros.script.hackasm)
+
+(defun show-usage ()
+  (format t
+	  (concatenate 'string
+		       "cl-hackasm v1.0.0~%"
+		       "Copyright (c) 2019 Lucas Vieira~%"
+		       "This project is distributed under the MIT License.~%~%"
+		       "Usage: hackasm /path/to/file.asm~%~%"
+		       "This is an assembler for the Hack platform, written in "
+		       "Common Lisp. It will produce a .hack file for the "
+		       "assembly code given from command line.~%")))
+
+(defun main (&rest argv)
+  (if (not argv)
+      (show-usage)
+      (dolist (file argv)
+	(format t "* Assembling file \"~a\"...~%" file)
+	(cl-hackasm:assemble-file file))))
+
+;;; vim: set ft=lisp lisp:

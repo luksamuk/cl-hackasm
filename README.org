@@ -1,0 +1,51 @@
+#+TITLE: cl-hackasm
+#+AUTHOR: Lucas Vieira
+#+EMAIL: lucasvieira@lisp.com.br
+
+* Overview
+
+cl-hackasm is an assembler for the Hack platform, written in Common Lisp. It was
+designed as the exercise for Chapter 6 of the book /The Elements of Computing
+Systems/, by Nisan and Schocken.
+
+More information on my progress on the book can be seen at my [[https://github.com/luksamuk/study][study]] repository.
+
+* Usage
+
+One should be able to use this assembler by using either Quicklisp directly or
+Roswell.
+
+** Using with Quicklisp and the REPL directly
+
+Either add this repository to your ~local-projects~ folder or install it using
+Quicklisp (this project should be available from Ultralisp. If you don't know
+how to add a new dist, I recommend taking a look at the [[https://github.com/commonlispbr/quicksys][Quicksys]] tool).
+
+Then, to assemble a file, one might just want to use:
+
+#+begin_src lisp
+(ql:quickload :cl-hackasm)
+(cl-hackasm:assemble-file "/path/to/file.asm")
+#+end_src
+
+This will create a file ~"/path/to/file.hack"~, which should load without problems
+on the tools provided as resources for the book.
+
+** Using from Roswell
+
+One can simply install this tool using Roswell with the following command:
+
+#+begin_src bash
+ros install luksamuk/cl-hackasm
+#+end_src
+
+From there on, a script called ~hackasm~ should be available to invoke directly
+from command line. Simply pass as argument all the .asm files which are supposed
+to be assembled, and ~hackasm~ will attempt to assemble each one of them.
+
+* License
+
+This project is distributed under the MIT License. See LICENSE for details.
+
+Copyright (c) 2019 Lucas Vieira
+
