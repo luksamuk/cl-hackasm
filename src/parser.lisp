@@ -159,12 +159,11 @@
 	     with instruction-num = 0
 	     for instruction in instruction-list
 	     collect (if (label-instruction-p instruction)
-			 (if next
-			     (error "Label preceeded by another: ~a" instruction)
-			     (progn (setf next (instruction-label instruction))
-				    nil))
+			 (progn (push (instruction-label instruction) next)
+				nil)
 			 (progn (when next
-				  (push (list next instruction-num) sym-table)
+				  (dolist (label next)
+				    (push (list label instruction-num) sym-table))
 				  (setf next nil))
 				(incf instruction-num)
 				(cond ((a-instruction-p instruction)
