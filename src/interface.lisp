@@ -49,5 +49,5 @@
   (let ((output-path (deduce-output-file-name file-path)))
     (if-let parsed-instructions (parse-asm-file file-path)
       (if-let written (write-asm-file output-path parsed-instructions)
-	(format t "Assemble successful!~%Wrote \"~a\"."
+	(format t "Assemble successful!~%Wrote \"~a\".~%"
 		output-path)))))
